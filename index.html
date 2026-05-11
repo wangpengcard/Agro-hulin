@@ -14,10 +14,17 @@ a{color:var(--b);text-decoration:none}
 .hdr{background:linear-gradient(135deg,#0f2318,#0c1219 50%,#0f1a2e);padding:1.8rem 2rem 1.2rem;border-bottom:1px solid var(--bdr)}
 .hdr h1{font-size:1.6rem;display:flex;align-items:center;gap:.5rem}
 .hdr .sub{color:var(--d);font-size:.85rem;margin-top:.3rem}
-.tags{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.7rem}
+.tags{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.7rem;align-items:center}
 .tag{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.04);border:1px solid var(--bdr);padding:.25rem .6rem;border-radius:16px;font-size:.75rem;color:var(--d)}
 .tag i{width:7px;height:7px;border-radius:50%;display:inline-block}
 .ig{background:var(--g)}.ib{background:var(--b)}.iy{background:var(--y)}
+
+/* ── Header satellite button ── */
+.sat-btn{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(167,139,250,.15));border:1px solid rgba(56,189,248,.3);padding:.35rem .85rem;border-radius:18px;font-size:.78rem;color:var(--b);cursor:pointer;transition:all .2s;font-weight:500;margin-left:.4rem}
+.sat-btn:hover{background:linear-gradient(135deg,rgba(56,189,248,.25),rgba(167,139,250,.25));border-color:rgba(56,189,248,.5);transform:translateY(-1px);box-shadow:0 4px 12px rgba(56,189,248,.15)}
+.sat-btn:active{transform:translateY(0)}
+.sat-btn .sat-icon{font-size:1rem}
+.sat-btn .sat-count{background:rgba(56,189,248,.2);padding:.05rem .4rem;border-radius:10px;font-size:.65rem;margin-left:.15rem}
 
 /* ── Grid ── */
 .dash{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.8rem;padding:1.2rem 2rem;max-width:1500px;margin:0 auto}
@@ -91,6 +98,58 @@ a{color:var(--b);text-decoration:none}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
+
+/* ================================================================
+   卫星影像 Modal
+   ================================================================ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:1000;display:none;justify-content:center;align-items:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;transition:opacity .25s}
+.modal-overlay.active{display:flex;opacity:1}
+
+.modal{background:var(--card);border:1px solid var(--bdr);border-radius:14px;width:min(92vw,960px);max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.5);transform:translateY(20px);transition:transform .25s}
+.modal-overlay.active .modal{transform:translateY(0)}
+
+/* modal header */
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;border-bottom:1px solid var(--bdr);flex-shrink:0}
+.modal-title{font-size:.95rem;font-weight:600;display:flex;align-items:center;gap:.45rem}
+.modal-close{background:rgba(255,255,255,.06);border:1px solid var(--bdr);color:var(--d);width:32px;height:32px;border-radius:8px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.modal-close:hover{background:rgba(239,68,68,.15);border-color:var(--r);color:var(--r)}
+
+/* date selector */
+.date-strip{display:flex;gap:.35rem;padding:.6rem 1.2rem;overflow-x:auto;border-bottom:1px solid var(--bdr);flex-shrink:0}
+.date-chip{flex:0 0 auto;padding:.3rem .7rem;border-radius:16px;font-size:.72rem;cursor:pointer;border:1px solid var(--bdr);background:rgba(255,255,255,.03);color:var(--d);transition:all .15s;white-space:nowrap}
+.date-chip:hover{border-color:var(--b);color:var(--t)}
+.date-chip.active{background:rgba(56,189,248,.15);border-color:var(--b);color:var(--b);font-weight:600}
+
+/* index tabs */
+.tab-strip{display:flex;gap:.25rem;padding:.5rem 1.2rem;overflow-x:auto;border-bottom:1px solid var(--bdr);flex-shrink:0}
+.tab-chip{flex:0 0 auto;padding:.28rem .6rem;border-radius:12px;font-size:.7rem;cursor:pointer;border:1px solid transparent;background:rgba(255,255,255,.03);color:var(--d);transition:all .15s;white-space:nowrap;text-transform:uppercase;letter-spacing:.03em}
+.tab-chip:hover{color:var(--t);background:rgba(255,255,255,.06)}
+.tab-chip.active{background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.3);color:var(--g);font-weight:600}
+
+/* image area */
+.modal-body{flex:1;display:flex;align-items:center;justify-content:center;padding:1rem;overflow:auto;min-height:300px;position:relative}
+.modal-body img{max-width:100%;max-height:60vh;object-fit:contain;border-radius:8px;border:1px solid var(--bdr);transition:opacity .2s}
+.modal-body img.loading{opacity:.3}
+.modal-empty{text-align:center;color:var(--d);padding:2rem}
+.modal-empty .ic{font-size:2.5rem;margin-bottom:.6rem}
+
+/* image info footer */
+.modal-ftr{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.2rem;border-top:1px solid var(--bdr);font-size:.7rem;color:var(--d);flex-shrink:0;flex-wrap:wrap;gap:.4rem}
+.modal-ftr .info-left{display:flex;gap:1rem;flex-wrap:wrap}
+.modal-ftr .info-item{display:flex;align-items:center;gap:.3rem}
+.modal-ftr .open-link{color:var(--b);cursor:pointer;transition:color .15s}
+.modal-ftr .open-link:hover{color:var(--t);text-decoration:underline}
+
+/* index legend */
+.idx-legend{display:flex;gap:.5rem;flex-wrap:wrap;padding:.4rem 1.2rem .6rem;border-bottom:1px solid rgba(37,48,64,.4);flex-shrink:0}
+.idx-desc{font-size:.62rem;color:var(--d);background:rgba(255,255,255,.03);padding:.15rem .45rem;border-radius:8px}
+
+@media(max-width:768px){
+  .modal{width:98vw;max-height:95vh;border-radius:10px}
+  .modal-body img{max-height:50vh}
+  .modal-hdr,.modal-ftr{padding:.7rem .8rem}
+  .date-strip,.tab-strip{padding:.45rem .8rem}
+}
 </style>
 </head>
 <body>
@@ -107,6 +166,23 @@ a{color:var(--b);text-decoration:none}
   数据源 <a href="https://agromonitoring.com" target="_blank">AgroMonitoring API</a> ·
   每2小时自动更新 ·
   卫星影像点击可查看大图
+</div>
+
+<!-- 卫星影像 Modal -->
+<div class="modal-overlay" id="satModal">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title">🛰️ 卫星影像查看器</div>
+      <button class="modal-close" onclick="closeSatModal()">&times;</button>
+    </div>
+    <div class="date-strip" id="modalDates"></div>
+    <div class="tab-strip" id="modalTabs"></div>
+    <div class="idx-legend" id="modalLegend"></div>
+    <div class="modal-body" id="modalBody">
+      <div class="modal-empty"><div class="ic">🛰️</div><h2>选择日期和指数</h2></div>
+    </div>
+    <div class="modal-ftr" id="modalFtr"></div>
+  </div>
 </div>
 
 <script>
@@ -136,11 +212,130 @@ const k2c=k=>(k-273.15).toFixed(1);
 const ts2d=ts=>{const d=new Date(ts*1000);return d.toLocaleDateString('zh-CN',{month:'2-digit',day:'2-digit'})};
 const ts2t=ts=>{const d=new Date(ts*1000);return d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})};
 const ts2dt=ts=>ts2d(ts)+' '+ts2t(ts);
+const ts2full=ts=>new Date(ts*1000).toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
 const wd=deg=>['北','东北','东','东南','南','西南','西','西北'][Math.round(deg/45)%8];
 const wi=id=>{if(id>=200&&id<300)return'⛈️';if(id>=300&&id<400)return'🌦️';if(id>=500&&id<600)return'🌧️';if(id>=600&&id<700)return'❄️';if(id>=700&&id<800)return'🌫️';if(id===800)return'☀️';if(id>800)return'☁️';return'🌤️'};
 const uvL=v=>{if(v<3)return{l:'低',c:'#4ade80',b:'bg'};if(v<6)return{l:'中等',c:'#facc15',b:'bw'};if(v<8)return{l:'高',c:'#f97316',b:'bw'};if(v<11)return{l:'很高',c:'#ef4444',b:'br'};return{l:'极高',c:'#9333ea',b:'br'}};
 const nvC=v=>{if(v<.2)return'#ef4444';if(v<.4)return'#f97316';if(v<.6)return'#facc15';if(v<.8)return'#4ade80';return'#22c55e'};
 const nvL=v=>{if(v<.1)return'裸地';if(v<.2)return'稀疏';if(v<.4)return'低密度';if(v<.6)return'中密度';if(v<.8)return'茂密';return'极茂密'};
+
+/* ================================================================
+   卫星影像 Modal 逻辑
+   ================================================================ */
+const IMG_TYPES=[
+  ['truecolor','真彩色','可见光合成图像'],
+  ['ndvi','NDVI','归一化植被指数，反映植被健康状况'],
+  ['evi','EVI','增强植被指数，对高密度植被更敏感'],
+  ['evi2','EVI2','改进增强植被指数'],
+  ['nri','NRI','氮反射指数，评估作物氮素含量'],
+  ['dswi','DSWI','干旱胁迫指数，监测水分胁迫'],
+  ['ndwi','NDWI','归一化水体指数，识别水体与湿度'],
+  ['falsecolor','假彩色','突出植被(红色)与水体(蓝色)']
+];
+
+let satData=[];      // satellite.json 数据
+let modalDateIdx=0;  // 当前选中的日期索引
+let modalTabIdx=0;   // 当前选中的指数索引
+
+function openSatModal(dateIdx,tabIdx){
+  satData=window._satData||[];
+  if(!satData.length)return;
+  modalDateIdx=dateIdx||0;
+  modalTabIdx=tabIdx||0;
+  renderModal();
+  const overlay=document.getElementById('satModal');
+  overlay.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function closeSatModal(){
+  const overlay=document.getElementById('satModal');
+  overlay.classList.remove('active');
+  document.body.style.overflow='';
+}
+
+function renderModal(){
+  // dates
+  const dateEl=document.getElementById('modalDates');
+  dateEl.innerHTML=satData.map((img,i)=>{
+    const dt=ts2full(img.dt);
+    const cls=i===modalDateIdx?'active':'';
+    return`<div class="date-chip ${cls}" onclick="selectModalDate(${i})">${dt}</div>`;
+  }).join('');
+
+  // available indices for current date
+  const curImg=satData[modalDateIdx];
+  const availTypes=IMG_TYPES.filter(([key])=>curImg?.image?.[key]);
+
+  // clamp tab index
+  if(modalTabIdx>=availTypes.length)modalTabIdx=0;
+
+  // tabs
+  const tabEl=document.getElementById('modalTabs');
+  tabEl.innerHTML=availTypes.map(([key,label],i)=>{
+    const cls=i===modalTabIdx?'active':'';
+    return`<div class="tab-chip ${cls}" onclick="selectModalTab(${i})">${label}</div>`;
+  }).join('');
+
+  // legend
+  const legendEl=document.getElementById('modalLegend');
+  if(availTypes.length>0){
+    const cur=availTypes[modalTabIdx];
+    legendEl.innerHTML=`<span class="idx-desc">${cur[0].toUpperCase()}：${cur[2]}</span>`;
+  }else{
+    legendEl.innerHTML='';
+  }
+
+  // image
+  const bodyEl=document.getElementById('modalBody');
+  if(availTypes.length>0){
+    const cur=availTypes[modalTabIdx];
+    const url=curImg.image[cur[0]];
+    bodyEl.innerHTML=`<img src="${url}" alt="${cur[1]}" class="loading" onload="this.classList.remove('loading')" onerror="this.classList.remove('loading')">`;
+  }else{
+    bodyEl.innerHTML=`<div class="modal-empty"><div class="ic">📭</div><h2>该日期暂无影像数据</h2></div>`;
+  }
+
+  // footer
+  const ftrEl=document.getElementById('modalFtr');
+  if(availTypes.length>0){
+    const cur=availTypes[modalTabIdx];
+    const url=curImg.image[cur[0]];
+    const cloud=curImg.clouds!=null?`${curImg.clouds}%`:'—';
+    const sat=curImg.type||'—';
+    ftrEl.innerHTML=`
+      <div class="info-left">
+        <span class="info-item">📅 ${ts2full(curImg.dt)}</span>
+        <span class="info-item">🛰️ ${sat}</span>
+        <span class="info-item">☁️ 云量 ${cloud}</span>
+        <span class="info-item">📊 ${cur[0].toUpperCase()}</span>
+      </div>
+      <span class="open-link" onclick="window.open('${url}','_blank')">🔗 新窗口打开</span>`;
+  }else{
+    ftrEl.innerHTML='';
+  }
+}
+
+function selectModalDate(i){
+  modalDateIdx=i;
+  modalTabIdx=0;
+  renderModal();
+}
+
+function selectModalTab(i){
+  modalTabIdx=i;
+  renderModal();
+}
+
+// 点击遮罩关闭
+document.getElementById('satModal').addEventListener('click',function(e){
+  if(e.target===this)closeSatModal();
+});
+
+// ESC关闭
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeSatModal();
+});
 
 /* ================================================================
    渲染模块
@@ -150,11 +345,13 @@ function rTags(d){
   const el=document.getElementById('tags');
   const m=d.meta||{},p=d.polygon||{};
   const u=m.updated?new Date(m.updated).toLocaleString('zh-CN'):'未知';
+  const satCount=Array.isArray(d.satellite)?d.satellite.length:0;
   el.innerHTML=`
     <span class="tag"><i class="ig"></i>${p.name||'hulin'}</span>
     <span class="tag"><i class="ib"></i>${p.area?p.area.toFixed(1):'?'} 公顷</span>
     <span class="tag"><i class="iy"></i>更新: ${u}</span>
-    <span class="tag"><i class="ig"></i>${m.ok||0}/10 端点</span>`;
+    <span class="tag"><i class="ig"></i>${m.ok||0}/10 端点</span>
+    ${satCount>0?`<button class="sat-btn" onclick="openSatModal()"><span class="sat-icon">🛰️</span> 卫星影像<span class="sat-count">${satCount} 景</span></button>`:''}`;
 }
 
 function rWeather(d){
@@ -311,26 +508,21 @@ function rUV(d){
   </div>`;
 }
 
-/* 卫星影像类型标签 */
-const IMG_TYPES=[
-  ['truecolor','真彩色'],['ndvi','NDVI'],['evi','EVI'],['evi2','EVI2'],
-  ['nri','NRI'],['dswi','DSWI'],['ndwi','NDWI'],['falsecolor','假彩色']
-];
-
 function rSat(d){
   const arr=d.satellite;
   if(!Array.isArray(arr)||!arr.length)return'';
+  /* 保存到全局供 modal 使用 */
+  window._satData=arr;
   const latest=arr.slice(-8);
   let th='';
-  latest.forEach(img=>{
+  latest.forEach((img,di)=>{
     const dt=ts2d(img.dt);
-    IMG_TYPES.forEach(([key,label])=>{
-      const url=img.image?.[key];
-      if(url)th+=`<div class="si" onclick="window.open('${url}','_blank')"><img src="${url}" loading="lazy"><div class="lb">${dt} ${label}</div></div>`;
-    });
+    /* 只显示真彩色缩略图，点击打开 modal */
+    const url=img.image?.truecolor;
+    if(url)th+=`<div class="si" onclick="openSatModal(${arr.length-8+di>=0?arr.length-8+di:di},0)"><img src="${url}" loading="lazy"><div class="lb">${dt} 真彩色</div></div>`;
   });
   if(!th)return'';
-  return`<div class="c cw"><div class="ct"><span class="ic">🛰️</span> 卫星影像 · 近30天 ${arr.length} 景 · ${IMG_TYPES.length} 种指数 (点击看大图)</div><div class="sg">${th}</div></div>`;
+  return`<div class="c cw"><div class="ct"><span class="ic">🛰️</span> 卫星影像 · 近30天 ${arr.length} 景 · ${IMG_TYPES.length} 种指数 (点击查看详情)</div><div class="sg">${th}</div></div>`;
 }
 
 function rNDVI(d){
