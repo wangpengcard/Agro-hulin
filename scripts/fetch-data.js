@@ -2,19 +2,15 @@
 /**
  * AgroMonitoring Data Fetcher
  *
- * 免费计划可采集的全部数据 (7个端点)：
+ * 免费计划可采集的全部数据 (6个端点)：
  * 1. 多边形信息
  * 2. 当前天气
  * 3. 5天天气预报 (每3小时)
  * 4. 当前土壤数据 (表面温度/10cm温度/湿度) + 历史累积
  * 5. 当前UV指数
- * 6. UV预报
- * 7. 卫星影像搜索 (最近30天, 含所有指数URL)
- * 8. NDVI历史 (最近30天)       ← 需付费计划, 已注释
- * 9. 累积温度 (最近30天)        ← 需付费计划, 已注释
- * 10. 累积降水 (最近30天)       ← 需付费计划, 已注释
+ * 6. 卫星影像搜索 (最近30天, 含所有指数URL)
  *
- * 调用预算: ~7次/运行, 每2小时1次 = ~84次/天 (限额500次/天)
+ * 调用预算: ~6次/运行, 每2小时1次 = ~72次/天 (限额500次/天)
  */
 
 const fs = require('fs');
@@ -135,28 +131,28 @@ async function main() {
 
   // 1. 多边形信息
   try {
-    console.log('1/7 多边形信息');
+    console.log('1/6 多边形信息');
     save('polygon.json', await api(`/polygons/${POLYGON_ID}`));
     ok++;
   } catch (e) { errors.push(['polygon', e.message]); }
 
   // 2. 当前天气
   try {
-    console.log('2/7 当前天气');
+    console.log('2/6 当前天气');
     save('weather.json', await api(`/weather?lat=${CENTER_LAT}&lon=${CENTER_LON}`));
     ok++;
   } catch (e) { errors.push(['weather', e.message]); }
 
   // 3. 5天预报
   try {
-    console.log('3/7 5天预报');
+    console.log('3/6 5天预报');
     save('forecast.json', await api(`/weather/forecast?lat=${CENTER_LAT}&lon=${CENTER_LON}`));
     ok++;
   } catch (e) { errors.push(['forecast', e.message]); }
 
   // 4. 土壤（当前 + 历史累积）
   try {
-    console.log('4/7 土壤数据');
+    console.log('4/6 土壤数据');
     const soil = await api(`/soil?polyid=${POLYGON_ID}`);
     save('soil.json', soil);           // 保持原有单点文件兼容
     appendSoilHistory(soil);           // 追加到历史记录
@@ -165,21 +161,14 @@ async function main() {
 
   // 5. 当前UV
   try {
-    console.log('5/7 UV指数');
+    console.log('5/6 UV指数');
     save('uvi.json', await api(`/uvi?polyid=${POLYGON_ID}`));
     ok++;
   } catch (e) { errors.push(['uvi', e.message]); }
 
-  // 6. UV预报
+  // 6. 卫星影像搜索 (最近30天)
   try {
-    console.log('6/7 UV预报');
-    save('uvi_forecast.json', await api(`/uvi/forecast?polyid=${POLYGON_ID}`));
-    ok++;
-  } catch (e) { errors.push(['uvi_forecast', e.message]); }
-
-  // 7. 卫星影像搜索 (最近30天)
-  try {
-    console.log('7/7 卫星影像');
+    console.log('6/6 卫星影像');
     const images = await api(`/image/search?start=${ago(30)}&end=${now()}&polyid=${POLYGON_ID}`);
     save('satellite.json', images);
     console.log(`     → ${Array.isArray(images) ? images.length : 0} 景影像`);
@@ -220,7 +209,7 @@ async function main() {
 
   // 汇总
   console.log('');
-  console.log(`✅ 完成: ${ok}/7 成功`);
+  console.log(`✅ 完成: ${ok}/6 成功`);
   if (errors.length) {
     console.log(`⚠️  失败 ${errors.length} 个:`);
     errors.forEach(([k, v]) => console.log(`   ${k}: ${v}`));

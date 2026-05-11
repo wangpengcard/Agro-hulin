@@ -23,11 +23,11 @@ a{color:var(--b);text-decoration:none}
 .dash{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.8rem;padding:1.2rem 2rem;max-width:1500px;margin:0 auto}
 @media(max-width:768px){.dash{grid-template-columns:1fr;padding:.8rem}.hdr{padding:1.2rem .8rem 1rem}}
 
-/* ── Forecast + Soil row ── */
-.fc-row{display:flex;gap:.8rem;grid-column:1/-1}
-.fc-left{flex:0 0 320px;min-width:280px}
-.fc-right{flex:1;min-width:0}
-@media(max-width:768px){.fc-row{flex-direction:column}.fc-left{flex:0 0 auto}}
+/* ── Top row: Weather + UV + Forecast ── */
+.top-row{display:flex;gap:.8rem;grid-column:1/-1}
+.top-row>.c{flex:1;min-width:0}
+.top-row>.c:first-child{flex:0 0 280px}
+@media(max-width:768px){.top-row{flex-direction:column}.top-row>.c:first-child{flex:0 0 auto}}
 
 /* ── Card ── */
 .c{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.1rem;transition:border-color .2s}
@@ -115,7 +115,7 @@ a{color:var(--b);text-decoration:none}
    ================================================================ */
 const FILES=[
   'meta','polygon','weather','forecast','soil','soil_history',
-  'uvi','uvi_forecast','satellite','ndvi','acc_temp','acc_precip'
+  'uvi','satellite','ndvi','acc_temp','acc_precip'
 ];
 
 async function load(){
@@ -193,7 +193,7 @@ function rForecast(d){
       <span style="font-size:.8rem;flex-shrink:0;white-space:nowrap"><span style="color:var(--b)">${k2c(mn)}°</span><span style="color:var(--d)"> / </span><span style="color:var(--y)">${k2c(mx)}°</span></span>
     </div>`;
   }
-  return`<div class="fc-row"><div class="c fc-left"><div class="ct"><span class="ic">📅</span> 5天预报</div>${rows}</div><div id="soil-chart-slot"></div></div>`;
+  return`<div class="c"><div class="ct"><span class="ic">📅</span> 5天预报</div>${rows}</div>`;
 }
 
 function rSoilChart(d){
@@ -295,7 +295,7 @@ function rSoilChart(d){
     <path d="${polyM(moist)}" fill="none" stroke="#4ade80" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6,3"/>
     ${dots}${legend}${statsBadge}
   </svg>`;
-  return`<div class="c fc-right"><div class="ct"><span class="ic">🌡️</span> 土壤趋势</div>${svg}</div>`;
+  return`<div class="c cw"><div class="ct"><span class="ic">🌡️</span> 土壤趋势</div>${svg}</div>`;
 }
 
 function rUV(d){
@@ -309,17 +309,6 @@ function rUV(d){
     <div class="cd"><div class="r"><span class="l">更新</span><span class="v">${ts2dt(u.dt)}</span></div></div>
     <div class="uv"><span>0</span><div class="uvb"><div class="uvm" style="left:${pct}%"></div></div><span>12+</span></div>
   </div>`;
-}
-
-function rUVFc(d){
-  const arr=d.uvi_forecast;
-  if(!Array.isArray(arr)||!arr.length)return'';
-  let h=`<div class="c"><div class="ct"><span class="ic">🔆</span> UV预报</div><div class="fs">`;
-  arr.slice(0,7).forEach(i=>{
-    const lv=uvL(i.uvi);
-    h+=`<div class="fi"><div class="tm">${ts2d(i.dt)}</div><div class="tp" style="color:${lv.c}">${i.uvi.toFixed(1)}</div><div class="ds">${lv.l}</div></div>`;
-  });
-  return h+'</div></div>';
 }
 
 function rSat(d){
@@ -440,19 +429,23 @@ async function render(){
     return;
   }
   rTags(d);
-  let h='',soilChartHtml='';
-  h+=rWeather(d);soilChartHtml=rSoilChart(d);
-  h+=rUV(d);
-  h+=rForecast(d);h+=rUVFc(d);
+  let h='',soilHtml='';
+  soilHtml=rSoilChart(d);
+  /* 顶部行: 天气 + UV + 5天预报 */
+  const weatherHtml=rWeather(d);
+  const uvHtml=rUV(d);
+  const forecastHtml=rForecast(d);
+  if(weatherHtml||uvHtml||forecastHtml){
+    h+=`<div class="top-row">${weatherHtml}${uvHtml}${forecastHtml}</div>`;
+  }
+  /* 土壤趋势: 独占整行 */
+  h+=soilHtml;
   h+=rAccTemp(d);h+=rAccPrecip(d);h+=rPoly(d);
   h+=rSat(d);
   h+=rNDVI(d);
   h+=rSatStats(d);
   h+=rErr(d);
   document.getElementById('dash').innerHTML=h;
-  /* insert soil chart into forecast row */
-  const slot=document.getElementById('soil-chart-slot');
-  if(slot&&soilChartHtml) slot.outerHTML=soilChartHtml;
 }
 
 render();
