@@ -311,6 +311,12 @@ function rUV(d){
   </div>`;
 }
 
+/* 卫星影像类型标签 */
+const IMG_TYPES=[
+  ['truecolor','真彩色'],['ndvi','NDVI'],['evi','EVI'],['evi2','EVI2'],
+  ['nri','NRI'],['dswi','DSWI'],['ndwi','NDWI'],['falsecolor','假彩色']
+];
+
 function rSat(d){
   const arr=d.satellite;
   if(!Array.isArray(arr)||!arr.length)return'';
@@ -318,11 +324,13 @@ function rSat(d){
   let th='';
   latest.forEach(img=>{
     const dt=ts2d(img.dt);
-    if(img.image?.truecolor)th+=`<div class="si" onclick="window.open('${img.image.truecolor}','_blank')"><img src="${img.image.truecolor}" loading="lazy"><div class="lb">${dt} 真彩色</div></div>`;
-    if(img.image?.ndvi)th+=`<div class="si" onclick="window.open('${img.image.ndvi}','_blank')"><img src="${img.image.ndvi}" loading="lazy"><div class="lb">${dt} NDVI</div></div>`;
+    IMG_TYPES.forEach(([key,label])=>{
+      const url=img.image?.[key];
+      if(url)th+=`<div class="si" onclick="window.open('${url}','_blank')"><img src="${url}" loading="lazy"><div class="lb">${dt} ${label}</div></div>`;
+    });
   });
   if(!th)return'';
-  return`<div class="c cw"><div class="ct"><span class="ic">🛰️</span> 卫星影像 · 近30天 ${arr.length} 景 (点击看大图)</div><div class="sg">${th}</div></div>`;
+  return`<div class="c cw"><div class="ct"><span class="ic">🛰️</span> 卫星影像 · 近30天 ${arr.length} 景 · ${IMG_TYPES.length} 种指数 (点击看大图)</div><div class="sg">${th}</div></div>`;
 }
 
 function rNDVI(d){
