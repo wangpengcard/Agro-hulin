@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌾 Hulin 农业监测</title>
+<style>
+:root{--bg:#0c1219;--card:#151f2b;--card2:#1a2736;--bdr:#253040;--g:#4ade80;--b:#38bdf8;--y:#f59e0b;--r:#ef4444;--p:#a78bfa;--t:#e2e8f0;--d:#64748b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.5}
+a{color:var(--b);text-decoration:none}
+
+/* ── Header ── */
+.hdr{background:linear-gradient(135deg,#0f2318,#0c1219 50%,#0f1a2e);padding:1.8rem 2rem 1.2rem;border-bottom:1px solid var(--bdr)}
+.hdr h1{font-size:1.6rem;display:flex;align-items:center;gap:.5rem}
+.hdr .sub{color:var(--d);font-size:.85rem;margin-top:.3rem}
+.tags{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.7rem}
+.tag{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.04);border:1px solid var(--bdr);padding:.25rem .6rem;border-radius:16px;font-size:.75rem;color:var(--d)}
+.tag i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.ig{background:var(--g)}.ib{background:var(--b)}.iy{background:var(--y)}
+
+/* ── Grid ── */
+.dash{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.8rem;padding:1.2rem 2rem;max-width:1500px;margin:0 auto}
+@media(max-width:768px){.dash{grid-template-columns:1fr;padding:.8rem}.hdr{padding:1.2rem .8rem 1rem}}
+
+/* ── Forecast + Soil row ── */
+.fc-row{display:flex;gap:.8rem;grid-column:1/-1}
+.fc-left{flex:0 0 320px;min-width:280px}
+.fc-right{flex:1;min-width:0}
+@media(max-width:768px){.fc-row{flex-direction:column}.fc-left{flex:0 0 auto}}
+
+/* ── Card ── */
+.c{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.1rem;transition:border-color .2s}
+.c:hover{border-color:rgba(74,222,128,.25)}
+.ct{font-size:.78rem;color:var(--d);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
+.ct .ic{font-size:1rem}
+.cv{font-size:1.9rem;font-weight:700;line-height:1.1}
+.cu{font-size:.85rem;color:var(--d);font-weight:400}
+.cd{margin-top:.5rem;font-size:.78rem;color:var(--d)}
+.cd .r{display:flex;justify-content:space-between;padding:.12rem 0}
+.cd .l{color:var(--d)}.cd .v{color:var(--t);font-weight:500}
+.cw{grid-column:1/-1}
+
+/* ── Badge ── */
+.bdg{display:inline-block;padding:.12rem .45rem;border-radius:8px;font-size:.65rem;font-weight:600;text-transform:uppercase}
+.bg{background:rgba(74,222,128,.12);color:var(--g)}
+.bw{background:rgba(245,158,11,.12);color:var(--y)}
+.br{background:rgba(239,68,68,.12);color:var(--r)}
+
+/* ── Forecast strip ── */
+.fs{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.2rem;margin-top:.4rem}
+.fi{flex:0 0 auto;text-align:center;padding:.4rem .5rem;background:rgba(255,255,255,.025);border-radius:7px;min-width:62px;border:1px solid transparent;transition:border-color .2s}
+.fi:hover{border-color:var(--b)}
+.fi .tm{font-size:.65rem;color:var(--d)}
+.fi .tp{font-size:1rem;font-weight:700;margin:.15rem 0}
+.fi .ds{font-size:.6rem;color:var(--d)}
+
+/* ── Satellite gallery ── */
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.4rem;margin-top:.4rem}
+.si{aspect-ratio:1;background:rgba(255,255,255,.02);border-radius:7px;overflow:hidden;position:relative;cursor:pointer;border:1px solid var(--bdr);transition:all .2s}
+.si:hover{border-color:var(--b);transform:scale(1.03)}
+.si img{width:100%;height:100%;object-fit:cover}
+.si .lb{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.7);padding:.15rem .35rem;font-size:.6rem;text-align:center}
+
+/* ── Index row ── */
+.ir{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:.4rem;margin-top:.4rem}
+.ix{background:rgba(255,255,255,.025);border-radius:7px;padding:.4rem;text-align:center;border:1px solid transparent;transition:border-color .2s}
+.ix:hover{border-color:var(--g)}
+.ix .xn{font-size:.65rem;color:var(--d);text-transform:uppercase;letter-spacing:.04em}
+.ix .xv{font-size:1.2rem;font-weight:700;margin:.15rem 0}
+.ix .xr{font-size:.55rem;color:var(--d)}
+
+/* ── UV bar ── */
+.uv{display:flex;align-items:center;gap:.25rem;margin-top:.4rem;font-size:.65rem}
+.uvb{flex:1;height:7px;border-radius:4px;background:linear-gradient(90deg,#4ade80,#facc15,#f97316,#ef4444,#9333ea);position:relative}
+.uvm{position:absolute;top:-3px;width:3px;height:13px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 5px rgba(255,255,255,.5)}
+
+/* ── Progress ── */
+.pg{height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden;margin-top:.4rem}
+.pf{height:100%;border-radius:3px}
+
+/* ── State ── */
+.st{text-align:center;padding:2.5rem 1.5rem;color:var(--d)}
+.st .ic{font-size:2.5rem;margin-bottom:.8rem}
+.st h2{color:var(--t);margin-bottom:.4rem}
+
+/* ── Footer ── */
+.ft{text-align:center;padding:1.5rem;color:var(--d);font-size:.7rem;border-top:1px solid var(--bdr);margin-top:.8rem}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>🌾 Hulin 农业监测面板</h1>
+  <p class="sub">AgroMonitoring 卫星 + 气象数据 · Sentinel-2 / Landsat-8</p>
+  <div class="tags" id="tags"><span class="tag"><i class="ig"></i>加载中…</span></div>
+</div>
+<div class="dash" id="dash">
+  <div class="st"><div class="ic">📡</div><h2>正在加载数据…</h2></div>
+</div>
+<div class="ft">
+  数据源 <a href="https://agromonitoring.com" target="_blank">AgroMonitoring API</a> ·
+  每2小时自动更新 ·
+  卫星影像点击可查看大图
+</div>
+
+<script>
+/* ================================================================
+   数据加载
+   ================================================================ */
+const FILES=[
+  'meta','polygon','weather','forecast','soil','soil_history',
+  'uvi','uvi_forecast','satellite','ndvi','acc_temp','acc_precip'
+];
+
+async function load(){
+  const d={};
+  for(const f of FILES){
+    try{
+      const r=await fetch(`data/${f}.json?t=${Date.now()}`);
+      if(r.ok) d[f]=await r.json();
+    }catch(e){}
+  }
+  return d;
+}
+
+/* ================================================================
+   工具函数
+   ================================================================ */
+const k2c=k=>(k-273.15).toFixed(1);
+const ts2d=ts=>{const d=new Date(ts*1000);return d.toLocaleDateString('zh-CN',{month:'2-digit',day:'2-digit'})};
+const ts2t=ts=>{const d=new Date(ts*1000);return d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})};
+const ts2dt=ts=>ts2d(ts)+' '+ts2t(ts);
+const wd=deg=>['北','东北','东','东南','南','西南','西','西北'][Math.round(deg/45)%8];
+const wi=id=>{if(id>=200&&id<300)return'⛈️';if(id>=300&&id<400)return'🌦️';if(id>=500&&id<600)return'🌧️';if(id>=600&&id<700)return'❄️';if(id>=700&&id<800)return'🌫️';if(id===800)return'☀️';if(id>800)return'☁️';return'🌤️'};
+const uvL=v=>{if(v<3)return{l:'低',c:'#4ade80',b:'bg'};if(v<6)return{l:'中等',c:'#facc15',b:'bw'};if(v<8)return{l:'高',c:'#f97316',b:'bw'};if(v<11)return{l:'很高',c:'#ef4444',b:'br'};return{l:'极高',c:'#9333ea',b:'br'}};
+const nvC=v=>{if(v<.2)return'#ef4444';if(v<.4)return'#f97316';if(v<.6)return'#facc15';if(v<.8)return'#4ade80';return'#22c55e'};
+const nvL=v=>{if(v<.1)return'裸地';if(v<.2)return'稀疏';if(v<.4)return'低密度';if(v<.6)return'中密度';if(v<.8)return'茂密';return'极茂密'};
+
+/* ================================================================
+   渲染模块
+   ================================================================ */
+
+function rTags(d){
+  const el=document.getElementById('tags');
+  const m=d.meta||{},p=d.polygon||{};
+  const u=m.updated?new Date(m.updated).toLocaleString('zh-CN'):'未知';
+  el.innerHTML=`
+    <span class="tag"><i class="ig"></i>${p.name||'hulin'}</span>
+    <span class="tag"><i class="ib"></i>${p.area?p.area.toFixed(1):'?'} 公顷</span>
+    <span class="tag"><i class="iy"></i>更新: ${u}</span>
+    <span class="tag"><i class="ig"></i>${m.ok||0}/10 端点</span>`;
+}
+
+function rWeather(d){
+  const w=d.weather;
+  if(!w?.main)return'';
+  const desc=w.weather?.[0]?.description||'';
+  const icon=wi(w.weather?.[0]?.id||800);
+  return`<div class="c">
+    <div class="ct"><span class="ic">${icon}</span> 当前天气</div>
+    <div class="cv">${k2c(w.main.temp)}° <span class="cu">C</span></div>
+    <div class="cd">
+      <div class="r"><span class="l">体感</span><span class="v">${k2c(w.main.feels_like)}°C</span></div>
+      <div class="r"><span class="l">状况</span><span class="v">${desc}</span></div>
+      <div class="r"><span class="l">湿度</span><span class="v">${w.main.humidity}%</span></div>
+      <div class="r"><span class="l">气压</span><span class="v">${w.main.pressure} hPa</span></div>
+      <div class="r"><span class="l">风</span><span class="v">${w.wind?.speed?.toFixed(1)||'?'} m/s ${w.wind?.deg?wd(w.wind.deg)+'风':''}</span></div>
+      <div class="r"><span class="l">云量</span><span class="v">${w.clouds?.all||0}%</span></div>
+      ${w.rain?`<div class="r"><span class="l">降雨3h</span><span class="v">${w.rain['3h']}mm</span></div>`:''}
+      ${w.snow?`<div class="r"><span class="l">降雪3h</span><span class="v">${w.snow['3h']}mm</span></div>`:''}
+    </div></div>`;
+}
+
+function rForecast(d){
+  const fc=d.forecast;
+  if(!Array.isArray(fc)||!fc.length)return'';
+  const days={};
+  fc.forEach(i=>{const k=ts2d(i.dt);(days[k]=days[k]||[]).push(i)});
+  let rows='';
+  for(const[day,items]of Object.entries(days)){
+    const ts=items.map(i=>i.main.temp),mn=Math.min(...ts),mx=Math.max(...ts);
+    const mid=items[Math.floor(items.length/2)];
+    rows+=`<div style="display:flex;align-items:center;gap:.6rem;padding:.4rem 0;border-bottom:1px solid rgba(37,48,64,.5)">
+      <span style="width:52px;font-size:.8rem;color:var(--d);flex-shrink:0">${day}</span>
+      <span style="font-size:1.2rem;flex-shrink:0">${wi(mid?.weather?.[0]?.id||800)}</span>
+      <span style="flex:1;font-size:.72rem;color:var(--d);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${mid?.weather?.[0]?.description||''}</span>
+      <span style="font-size:.8rem;flex-shrink:0;white-space:nowrap"><span style="color:var(--b)">${k2c(mn)}°</span><span style="color:var(--d)"> / </span><span style="color:var(--y)">${k2c(mx)}°</span></span>
+    </div>`;
+  }
+  return`<div class="fc-row"><div class="c fc-left"><div class="ct"><span class="ic">📅</span> 5天预报</div>${rows}</div><div id="soil-chart-slot"></div></div>`;
+}
+
+function rSoilChart(d){
+  /* 优先使用 soil_history（累积历史），回退到 soil（单点） */
+  const history = d.soil_history;
+  const soil = d.soil;
+  let arr = [];
+
+  if(Array.isArray(history) && history.length > 0){
+    arr = history;
+  } else {
+    arr = Array.isArray(soil) ? soil : (soil ? [soil] : []);
+  }
+
+  if(!arr.length)return'';
+
+  /* 数据点数量提示 */
+  const pointCount = arr.length;
+  const firstDate = new Date(arr[0].dt * 1000);
+  const lastDate = new Date(arr[arr.length-1].dt * 1000);
+  const daySpan = Math.ceil((lastDate - firstDate) / 86400000);
+
+  /* build SVG chart */
+  const W=600,H=220,pad={t:30,r:50,b:40,l:50};
+  const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b;
+  /* collect data series */
+  const t0=arr.map(i=>({x:i.dt,y:parseFloat(k2c(i.t0))}));
+  const t10=arr.map(i=>({x:i.dt,y:parseFloat(k2c(i.t10))}));
+  const moist=arr.map(i=>({x:i.dt,y:Math.min(i.moisture*100,100)}));
+  /* find ranges */
+  const allY=[...t0,...t10].map(p=>p.y);
+  const yMin=Math.floor(Math.min(...allY)-2),yMax=Math.ceil(Math.max(...allY)+2);
+  const xMin=arr[0].dt,xMax=arr[arr.length-1].dt;
+  const xRange=xMax-xMin||1,yRange=yMax-yMin||1;
+  /* scale helpers */
+  const sx=v=>pad.l+((v-xMin)/xRange)*cw;
+  const sy=v=>pad.t+((yMax-v)/yRange)*ch;
+  const smy=v=>pad.t+((100-v)/100)*ch; /* moisture uses 0-100% */
+  /* polyline builder */
+  const poly=pts=>pts.map((p,i)=>`${i===0?'M':'L'}${sx(p.x).toFixed(1)},${sy(p.y).toFixed(1)}`).join(' ');
+  const polyM=pts=>pts.map((p,i)=>`${i===0?'M':'L'}${sx(p.x).toFixed(1)},${smy(p.y).toFixed(1)}`).join(' ');
+
+  /* 当前值摘要 */
+  const latest = arr[arr.length - 1];
+  const latestT0 = k2c(latest.t0);
+  const latestT10 = k2c(latest.t10);
+  const latestMoist = (latest.moisture * 100).toFixed(1);
+
+  /* grid lines */
+  const yTicks=5;
+  let gridLines='';
+  for(let i=0;i<=yTicks;i++){
+    const y=pad.t+(ch/yTicks)*i;
+    const val=(yMax-(yRange/yTicks)*i).toFixed(0);
+    gridLines+=`<line x1="${pad.l}" y1="${y.toFixed(1)}" x2="${W-pad.r}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
+    gridLines+=`<text x="${pad.l-8}" y="${(y+3).toFixed(1)}" fill="#64748b" font-size="10" text-anchor="end">${val}°</text>`;
+  }
+  /* moisture Y axis on right */
+  let moistAxis='';
+  for(let i=0;i<=yTicks;i++){
+    const y=pad.t+(ch/yTicks)*i;
+    const val=(100-(100/yTicks)*i).toFixed(0);
+    moistAxis+=`<text x="${W-pad.r+8}" y="${(y+3).toFixed(1)}" fill="#64748b" font-size="10" text-anchor="start">${val}%</text>`;
+  }
+  /* x axis labels - 根据数据点密度自适应 */
+  let xLabels='';
+  const maxLabels = 8;
+  const step = Math.max(1, Math.floor(arr.length / maxLabels));
+  for(let i=0;i<arr.length;i+=step){
+    const x=sx(arr[i].dt);
+    xLabels+=`<text x="${x.toFixed(1)}" y="${H-pad.b+18}" fill="#64748b" font-size="10" text-anchor="middle">${ts2d(arr[i].dt)}</text>`;
+    gridLines+=`<line x1="${x.toFixed(1)}" y1="${pad.t}" x2="${x.toFixed(1)}" y2="${H-pad.b}" stroke="rgba(255,255,255,.04)" stroke-width="1"/>`;
+  }
+
+  /* 数据点少时显示圆点，多时隐藏圆点避免拥挤 */
+  let dots='';
+  if(pointCount <= 30){
+    t0.forEach(p=>{dots+=`<circle cx="${sx(p.x).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="2.5" fill="#ef4444" opacity=".7"/>`});
+    t10.forEach(p=>{dots+=`<circle cx="${sx(p.x).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="2.5" fill="#38bdf8" opacity=".7"/>`});
+    moist.forEach(p=>{dots+=`<circle cx="${sx(p.x).toFixed(1)}" cy="${smy(p.y).toFixed(1)}" r="2.5" fill="#4ade80" opacity=".7"/>`});
+  }
+
+  /* legend + 当前值 */
+  const legend=`<g transform="translate(${pad.l+10},${pad.t-10})">
+    <rect x="0" y="-10" width="8" height="8" rx="1" fill="#ef4444"/><text x="12" y="-3" fill="#e2e8f0" font-size="11">表层温度 ${latestT0}°</text>
+    <rect x="120" y="-10" width="8" height="8" rx="1" fill="#38bdf8"/><text x="132" y="-3" fill="#e2e8f0" font-size="11">10cm温度 ${latestT10}°</text>
+    <rect x="250" y="-10" width="8" height="8" rx="1" fill="#4ade80"/><text x="262" y="-3" fill="#e2e8f0" font-size="11">湿度 ${latestMoist}%</text>
+  </g>`;
+
+  /* 数据点统计 */
+  const statsBadge = pointCount > 1
+    ? `<text x="${W-pad.r}" y="${pad.t-10}" fill="#64748b" font-size="10" text-anchor="end">${pointCount}个采样 · ${daySpan}天</text>`
+    : '';
+
+  const svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">
+    ${gridLines}${xLabels}${moistAxis}
+    <path d="${poly(t0)}" fill="none" stroke="#ef4444" stroke-width="2" stroke-linejoin="round"/>
+    <path d="${poly(t10)}" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round"/>
+    <path d="${polyM(moist)}" fill="none" stroke="#4ade80" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6,3"/>
+    ${dots}${legend}${statsBadge}
+  </svg>`;
+  return`<div class="c fc-right"><div class="ct"><span class="ic">🌡️</span> 土壤趋势</div>${svg}</div>`;
+}
+
+function rUV(d){
+  const u=d.uvi;
+  if(!u?.uvi&&u?.uvi!==0)return'';
+  const lv=uvL(u.uvi),pct=Math.min(u.uvi/12*100,100);
+  return`<div class="c">
+    <div class="ct"><span class="ic">☀️</span> 紫外线</div>
+    <div class="cv" style="color:${lv.c}">${u.uvi.toFixed(1)}</div>
+    <span class="bdg ${lv.b}">${lv.l}</span>
+    <div class="cd"><div class="r"><span class="l">更新</span><span class="v">${ts2dt(u.dt)}</span></div></div>
+    <div class="uv"><span>0</span><div class="uvb"><div class="uvm" style="left:${pct}%"></div></div><span>12+</span></div>
+  </div>`;
+}
+
+function rUVFc(d){
+  const arr=d.uvi_forecast;
+  if(!Array.isArray(arr)||!arr.length)return'';
+  let h=`<div class="c"><div class="ct"><span class="ic">🔆</span> UV预报</div><div class="fs">`;
+  arr.slice(0,7).forEach(i=>{
+    const lv=uvL(i.uvi);
+    h+=`<div class="fi"><div class="tm">${ts2d(i.dt)}</div><div class="tp" style="color:${lv.c}">${i.uvi.toFixed(1)}</div><div class="ds">${lv.l}</div></div>`;
+  });
+  return h+'</div></div>';
+}
+
+function rSat(d){
+  const arr=d.satellite;
+  if(!Array.isArray(arr)||!arr.length)return'';
+  const latest=arr.slice(-8);
+  let th='';
+  latest.forEach(img=>{
+    const dt=ts2d(img.dt);
+    if(img.image?.truecolor)th+=`<div class="si" onclick="window.open('${img.image.truecolor}','_blank')"><img src="${img.image.truecolor}" loading="lazy"><div class="lb">${dt} 真彩色</div></div>`;
+    if(img.image?.ndvi)th+=`<div class="si" onclick="window.open('${img.image.ndvi}','_blank')"><img src="${img.image.ndvi}" loading="lazy"><div class="lb">${dt} NDVI</div></div>`;
+  });
+  if(!th)return'';
+  return`<div class="c cw"><div class="ct"><span class="ic">🛰️</span> 卫星影像 · 近30天 ${arr.length} 景 (点击看大图)</div><div class="sg">${th}</div></div>`;
+}
+
+function rNDVI(d){
+  const arr=d.ndvi;
+  if(!Array.isArray(arr)||!arr.length)return'';
+  const last=arr[arr.length-1],m=last.data?.mean;
+  let bars='';
+  arr.forEach(i=>{
+    const v=i.data?.mean||0,h=v*100;
+    bars+=`<div style="flex:1;display:flex;flex-direction:column;align-items:center"><div style="width:100%;height:${h}px;background:${nvC(v)};border-radius:2px;min-height:2px" title="${v.toFixed(3)}"></div></div>`;
+  });
+  let stats='';
+  if(last.data){
+    const d=last.data;
+    stats=`<div class="ir" style="margin-top:.6rem">
+      <div class="ix"><div class="xn">均值</div><div class="xv" style="color:${nvC(d.mean)}">${d.mean?.toFixed(3)}</div></div>
+      <div class="ix"><div class="xn">中位数</div><div class="xv">${d.median?.toFixed(3)}</div></div>
+      <div class="ix"><div class="xn">最小</div><div class="xv">${d.min?.toFixed(3)}</div></div>
+      <div class="ix"><div class="xn">最大</div><div class="xv">${d.max?.toFixed(3)}</div></div>
+      <div class="ix"><div class="xn">标准差</div><div class="xv">${d.std?.toFixed(4)}</div></div>
+      <div class="ix"><div class="xn">像元数</div><div class="xv">${d.num?.toLocaleString()}</div></div>
+    </div>`;
+  }
+  return`<div class="c cw">
+    <div class="ct"><span class="ic">📊</span> NDVI趋势 · 30天 · 最新 <span style="color:${nvC(m)}">${m?.toFixed(3)}</span> <span class="bdg ${nvL(m).includes('茂密')?'bg':'bw'}">${nvL(m)}</span></div>
+    <div style="display:flex;align-items:flex-end;height:70px;gap:1px;margin-top:.4rem">${bars}</div>
+    <div style="display:flex;justify-content:space-between;font-size:.6rem;color:var(--d);margin-top:.15rem"><span>${ts2d(arr[0]?.dt)}</span><span>${ts2d(arr[arr.length-1]?.dt)}</span></div>
+    ${stats}
+  </div>`;
+}
+
+function rSatStats(d){
+  const arr=d.satellite;
+  if(!Array.isArray(arr)||!arr.length)return'';
+  const last=arr[arr.length-1];
+  if(!last.stats)return'';
+  const idx=['ndvi','evi','evi2','nri','dswi','ndwi'].filter(k=>last.stats[k]);
+  if(!idx.length)return'';
+  return`<div class="c cw">
+    <div class="ct"><span class="ic">🧪</span> 植被指数统计 · ${ts2d(last.dt)} · ${last.type}</div>
+    <div class="ir">${idx.map(k=>`<div class="ix"><div class="xn">${k.toUpperCase()}</div><div class="xv" style="font-size:.9rem">—</div><div class="xr">最新影像</div></div>`).join('')}</div>
+  </div>`;
+}
+
+function rAccTemp(d){
+  const a=d.acc_temp;
+  if(!Array.isArray(a)||!a.length)return'';
+  const l=a[a.length-1];
+  return`<div class="c">
+    <div class="ct"><span class="ic">🌡️</span> 累积温度</div>
+    <div class="cv">${l.temp!=null?k2c(l.temp):'?'}° <span class="cu">C·天</span></div>
+    <div class="cd">
+      <div class="r"><span class="l">天数</span><span class="v">${l.count}天</span></div>
+      <div class="r"><span class="l">周期</span><span class="v">${ts2d(a[0]?.dt)} – ${ts2d(l.dt)}</span></div>
+    </div>
+  </div>`;
+}
+
+function rAccPrecip(d){
+  const a=d.acc_precip;
+  if(!Array.isArray(a)||!a.length)return'';
+  const l=a[a.length-1];
+  return`<div class="c">
+    <div class="ct"><span class="ic">💧</span> 累积降水</div>
+    <div class="cv">${l.rain?.toFixed(1)||'?'} <span class="cu">mm</span></div>
+    <div class="cd">
+      <div class="r"><span class="l">天数</span><span class="v">${l.count}天</span></div>
+      <div class="r"><span class="l">周期</span><span class="v">${ts2d(a[0]?.dt)} – ${ts2d(l.dt)}</span></div>
+    </div>
+  </div>`;
+}
+
+function rPoly(d){
+  const p=d.polygon;
+  if(!p?.id)return'';
+  const c=p.center||[];
+  return`<div class="c">
+    <div class="ct"><span class="ic">📍</span> 多边形</div>
+    <div class="cv" style="font-size:1.2rem">${p.name||'hulin'}</div>
+    <div class="cd">
+      <div class="r"><span class="l">面积</span><span class="v">${p.area?.toFixed(2)} 公顷</span></div>
+      <div class="r"><span class="l">中心</span><span class="v">${c[1]?.toFixed(4)}, ${c[0]?.toFixed(4)}</span></div>
+      <div class="r"><span class="l">ID</span><span class="v" style="font-size:.65rem;word-break:break-all">${p.id}</span></div>
+    </div>
+  </div>`;
+}
+
+function rErr(d){
+  const e=d.meta?.errors;
+  if(!e?.length)return'';
+  return`<div class="c cw" style="border-color:var(--y)">
+    <div class="ct"><span class="ic">⚠️</span> 采集异常</div>
+    <div class="cd">${e.map(i=>`<div class="r"><span class="l">${i.endpoint}</span><span class="v" style="color:var(--r);font-size:.7rem">${i.error}</span></div>`).join('')}</div>
+  </div>`;
+}
+
+/* ================================================================
+   主渲染
+   ================================================================ */
+async function render(){
+  const d=await load();
+  if(!d.meta&&!d.weather){
+    document.getElementById('dash').innerHTML=`<div class="st" style="grid-column:1/-1"><div class="ic">📭</div><h2>暂无数据</h2><p>请配置 GitHub Secrets 后运行 Actions 工作流</p></div>`;
+    return;
+  }
+  rTags(d);
+  let h='',soilChartHtml='';
+  h+=rWeather(d);soilChartHtml=rSoilChart(d);
+  h+=rUV(d);
+  h+=rForecast(d);h+=rUVFc(d);
+  h+=rAccTemp(d);h+=rAccPrecip(d);h+=rPoly(d);
+  h+=rSat(d);
+  h+=rNDVI(d);
+  h+=rSatStats(d);
+  h+=rErr(d);
+  document.getElementById('dash').innerHTML=h;
+  /* insert soil chart into forecast row */
+  const slot=document.getElementById('soil-chart-slot');
+  if(slot&&soilChartHtml) slot.outerHTML=soilChartHtml;
+}
+
+render();
+</script>
+</body>
+</html>
