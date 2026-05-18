@@ -1,35 +1,5 @@
 [
   {
-    "dt": 1779138000,
-    "weather": [
-      {
-        "id": 804,
-        "main": "Clouds",
-        "description": "overcast clouds",
-        "icon": "04d"
-      }
-    ],
-    "main": {
-      "temp": 284.99,
-      "feels_like": 284.71,
-      "temp_min": 284.99,
-      "temp_max": 285.22,
-      "pressure": 1013,
-      "sea_level": 1013,
-      "grnd_level": 1004,
-      "humidity": 95,
-      "temp_kf": -0.23
-    },
-    "wind": {
-      "speed": 1.73,
-      "deg": 332,
-      "gust": 3.41
-    },
-    "clouds": {
-      "all": 100
-    }
-  },
-  {
     "dt": 1779148800,
     "weather": [
       {
@@ -40,15 +10,15 @@
       }
     ],
     "main": {
-      "temp": 286.96,
-      "feels_like": 286.54,
-      "temp_min": 286.96,
+      "temp": 286.15,
+      "feels_like": 285.78,
+      "temp_min": 286.15,
       "temp_max": 288,
       "pressure": 1014,
       "sea_level": 1014,
       "grnd_level": 1005,
-      "humidity": 82,
-      "temp_kf": -1.04
+      "humidity": 87,
+      "temp_kf": -1.85
     },
     "wind": {
       "speed": 2.04,
@@ -70,15 +40,15 @@
       }
     ],
     "main": {
-      "temp": 289.99,
-      "feels_like": 289.4,
-      "temp_min": 289.99,
+      "temp": 288.4,
+      "feels_like": 287.89,
+      "temp_min": 288.4,
       "temp_max": 289.99,
       "pressure": 1014,
       "sea_level": 1014,
       "grnd_level": 1004,
-      "humidity": 64,
-      "temp_kf": 0
+      "humidity": 73,
+      "temp_kf": -1.59
     },
     "wind": {
       "speed": 1.07,
@@ -89,7 +59,7 @@
       "3h": 0.12
     },
     "clouds": {
-      "all": 90
+      "all": 93
     }
   },
   {
@@ -1212,6 +1182,36 @@
     },
     "clouds": {
       "all": 92
+    }
+  },
+  {
+    "dt": 1779570000,
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "overcast clouds",
+        "icon": "04d"
+      }
+    ],
+    "main": {
+      "temp": 285.29,
+      "feels_like": 284.41,
+      "temp_min": 285.29,
+      "temp_max": 285.29,
+      "pressure": 1010,
+      "sea_level": 1010,
+      "grnd_level": 1000,
+      "humidity": 71,
+      "temp_kf": 0
+    },
+    "wind": {
+      "speed": 6.87,
+      "deg": 196,
+      "gust": 13.8
+    },
+    "clouds": {
+      "all": 100
     }
   }
 ]
