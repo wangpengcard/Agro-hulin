@@ -1,38 +1,5 @@
 [
   {
-    "dt": 1780693200,
-    "weather": [
-      {
-        "id": 500,
-        "main": "Rain",
-        "description": "light rain",
-        "icon": "10d"
-      }
-    ],
-    "main": {
-      "temp": 282.84,
-      "feels_like": 280.24,
-      "temp_min": 282.84,
-      "temp_max": 282.84,
-      "pressure": 1012,
-      "sea_level": 1012,
-      "grnd_level": 1003,
-      "humidity": 93,
-      "temp_kf": 0
-    },
-    "wind": {
-      "speed": 5.29,
-      "deg": 108,
-      "gust": 10.79
-    },
-    "rain": {
-      "3h": 1.76
-    },
-    "clouds": {
-      "all": 100
-    }
-  },
-  {
     "dt": 1780704000,
     "weather": [
       {
@@ -1266,6 +1233,36 @@
     },
     "clouds": {
       "all": 84
+    }
+  },
+  {
+    "dt": 1781125200,
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "overcast clouds",
+        "icon": "04d"
+      }
+    ],
+    "main": {
+      "temp": 284.92,
+      "feels_like": 284.61,
+      "temp_min": 284.92,
+      "temp_max": 284.92,
+      "pressure": 1006,
+      "sea_level": 1006,
+      "grnd_level": 996,
+      "humidity": 94,
+      "temp_kf": 0
+    },
+    "wind": {
+      "speed": 2.11,
+      "deg": 130,
+      "gust": 3.21
+    },
+    "clouds": {
+      "all": 100
     }
   }
 ]
