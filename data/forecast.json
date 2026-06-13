@@ -1,35 +1,5 @@
 [
   {
-    "dt": 1781384400,
-    "weather": [
-      {
-        "id": 804,
-        "main": "Clouds",
-        "description": "overcast clouds",
-        "icon": "04d"
-      }
-    ],
-    "main": {
-      "temp": 286.02,
-      "feels_like": 285.19,
-      "temp_min": 286.02,
-      "temp_max": 286.71,
-      "pressure": 1012,
-      "sea_level": 1012,
-      "grnd_level": 1004,
-      "humidity": 70,
-      "temp_kf": -0.69
-    },
-    "wind": {
-      "speed": 1.98,
-      "deg": 4,
-      "gust": 2.5
-    },
-    "clouds": {
-      "all": 100
-    }
-  },
-  {
     "dt": 1781395200,
     "weather": [
       {
@@ -40,15 +10,15 @@
       }
     ],
     "main": {
-      "temp": 288.58,
-      "feels_like": 287.9,
-      "temp_min": 288.58,
+      "temp": 287.82,
+      "feels_like": 287.14,
+      "temp_min": 287.82,
       "temp_max": 290.03,
       "pressure": 1013,
       "sea_level": 1013,
       "grnd_level": 1005,
-      "humidity": 66,
-      "temp_kf": -1.45
+      "humidity": 69,
+      "temp_kf": -2.21
     },
     "wind": {
       "speed": 1.45,
@@ -70,15 +40,15 @@
       }
     ],
     "main": {
-      "temp": 292.87,
-      "feels_like": 292.36,
-      "temp_min": 292.87,
+      "temp": 290.82,
+      "feels_like": 290.24,
+      "temp_min": 290.82,
       "temp_max": 292.87,
-      "pressure": 1015,
-      "sea_level": 1015,
+      "pressure": 1014,
+      "sea_level": 1014,
       "grnd_level": 1005,
-      "humidity": 56,
-      "temp_kf": 0
+      "humidity": 61,
+      "temp_kf": -2.05
     },
     "wind": {
       "speed": 2.16,
@@ -1230,6 +1200,36 @@
     },
     "clouds": {
       "all": 74
+    }
+  },
+  {
+    "dt": 1781816400,
+    "weather": [
+      {
+        "id": 803,
+        "main": "Clouds",
+        "description": "broken clouds",
+        "icon": "04d"
+      }
+    ],
+    "main": {
+      "temp": 290.1,
+      "feels_like": 290.28,
+      "temp_min": 290.1,
+      "temp_max": 290.1,
+      "pressure": 1005,
+      "sea_level": 1005,
+      "grnd_level": 996,
+      "humidity": 93,
+      "temp_kf": 0
+    },
+    "wind": {
+      "speed": 5.07,
+      "deg": 196,
+      "gust": 13.01
+    },
+    "clouds": {
+      "all": 57
     }
   }
 ]
