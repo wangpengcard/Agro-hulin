@@ -3,23 +3,23 @@
     "dt": 1782864000,
     "weather": [
       {
-        "id": 800,
-        "main": "Clear",
-        "description": "clear sky",
-        "icon": "01d"
+        "id": 801,
+        "main": "Clouds",
+        "description": "few clouds",
+        "icon": "02d"
       }
     ],
     "main": {
-      "temp": 293.92,
-      "feels_like": 294.25,
-      "temp_min": 293.92,
+      "temp": 297.22,
+      "feels_like": 297.59,
+      "temp_min": 297.22,
       "temp_max": 297.22,
       "pressure": 1010,
       "sea_level": 1010,
       "grnd_level": 1001,
-      "humidity": 84,
-      "temp_kf": -3.3,
-      "dew_point": 291.12
+      "humidity": 73,
+      "temp_kf": 0,
+      "dew_point": 292.08
     },
     "wind": {
       "speed": 1.52,
@@ -27,7 +27,7 @@
       "gust": 1.38
     },
     "clouds": {
-      "all": 9
+      "all": 15
     }
   },
   {
@@ -41,16 +41,16 @@
       }
     ],
     "main": {
-      "temp": 297.76,
-      "feels_like": 298.05,
-      "temp_min": 297.76,
+      "temp": 298.32,
+      "feels_like": 298.67,
+      "temp_min": 298.32,
       "temp_max": 300.51,
       "pressure": 1010,
       "sea_level": 1010,
       "grnd_level": 1000,
       "humidity": 68,
-      "temp_kf": -2.75,
-      "dew_point": 291.46
+      "temp_kf": -2.19,
+      "dew_point": 292
     },
     "wind": {
       "speed": 1.35,
@@ -61,30 +61,30 @@
       "3h": 0.19
     },
     "clouds": {
-      "all": 7
+      "all": 13
     }
   },
   {
     "dt": 1782885600,
     "weather": [
       {
-        "id": 803,
+        "id": 802,
         "main": "Clouds",
-        "description": "broken clouds",
-        "icon": "04d"
+        "description": "scattered clouds",
+        "icon": "03d"
       }
     ],
     "main": {
-      "temp": 301.28,
-      "feels_like": 301.65,
-      "temp_min": 301.28,
+      "temp": 299.93,
+      "feels_like": 300.77,
+      "temp_min": 299.93,
       "temp_max": 301.28,
-      "pressure": 1008,
-      "sea_level": 1008,
+      "pressure": 1009,
+      "sea_level": 1009,
       "grnd_level": 999,
-      "humidity": 49,
-      "temp_kf": 0,
-      "dew_point": 289.52
+      "humidity": 57,
+      "temp_kf": -1.35,
+      "dew_point": 290.71
     },
     "wind": {
       "speed": 1.38,
@@ -92,7 +92,7 @@
       "gust": 1.1
     },
     "clouds": {
-      "all": 55
+      "all": 42
     }
   },
   {
