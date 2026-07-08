@@ -1,10 +1,15 @@
 {
-  "updated": "2026-07-07T22:54:54.493Z",
+  "updated": "2026-07-08T02:03:53.740Z",
   "polygon_id": "69fc3a3eca96274e6a3c272b",
   "center": {
     "lat": 45.7291,
     "lon": 132.9466
   },
-  "ok": 6,
-  "errors": []
+  "ok": 5,
+  "errors": [
+    {
+      "endpoint": "soil",
+      "error": "HTTP 404: {\"title\":\"Raster not found\",\"message\":\"<head>\\n<title>Error response</title>\\n</head>\\n<body>\\n<h1>Error response</h1>\\n<p>Error code 404.\\n<p>Message: Raster not found.\\n<p>Error code explanation: 40"
+    }
+  ]
 }
