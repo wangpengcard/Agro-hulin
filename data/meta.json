@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10T10:48:02.347Z",
+  "updated": "2026-07-10T14:07:03.771Z",
   "polygon_id": "69fc3a3eca96274e6a3c272b",
   "center": {
     "lat": 45.7291,
@@ -9,7 +9,7 @@
   "errors": [
     {
       "endpoint": "soil",
-      "error": "HTTP 504: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>openresty</center>\r\n</body>\r\n</html>\r\n"
+      "error": "HTTP 404: {\"title\":\"Raster not found\",\"message\":\"<head>\\n<title>Error response</title>\\n</head>\\n<body>\\n<h1>Error response</h1>\\n<p>Error code 404.\\n<p>Message: Raster not found.\\n<p>Error code explanation: 40"
     }
   ]
 }
