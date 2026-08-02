@@ -1,36 +1,5 @@
 [
   {
-    "dt": 1785682800,
-    "weather": [
-      {
-        "id": 804,
-        "main": "Clouds",
-        "description": "overcast clouds",
-        "icon": "04n"
-      }
-    ],
-    "main": {
-      "temp": 291.98,
-      "feels_like": 292.45,
-      "temp_min": 291.98,
-      "temp_max": 291.98,
-      "pressure": 1011,
-      "sea_level": 1011,
-      "grnd_level": 1002,
-      "humidity": 97,
-      "temp_kf": 0,
-      "dew_point": 291.49
-    },
-    "wind": {
-      "speed": 2.28,
-      "deg": 167,
-      "gust": 6.66
-    },
-    "clouds": {
-      "all": 100
-    }
-  },
-  {
     "dt": 1785693600,
     "weather": [
       {
@@ -41,16 +10,16 @@
       }
     ],
     "main": {
-      "temp": 292.06,
-      "feels_like": 292.57,
-      "temp_min": 292.06,
+      "temp": 292.23,
+      "feels_like": 292.75,
+      "temp_min": 292.23,
       "temp_max": 292.23,
-      "pressure": 1011,
-      "sea_level": 1011,
+      "pressure": 1012,
+      "sea_level": 1012,
       "grnd_level": 1003,
       "humidity": 98,
-      "temp_kf": -0.17,
-      "dew_point": 291.74
+      "temp_kf": 0,
+      "dew_point": 291.91
     },
     "wind": {
       "speed": 3.36,
@@ -75,16 +44,16 @@
       }
     ],
     "main": {
-      "temp": 291.86,
-      "feels_like": 292.32,
+      "temp": 292.09,
+      "feels_like": 292.57,
       "temp_min": 291.8,
-      "temp_max": 291.86,
+      "temp_max": 292.09,
       "pressure": 1012,
       "sea_level": 1012,
       "grnd_level": 1003,
       "humidity": 97,
-      "temp_kf": 0.06,
-      "dew_point": 291.37
+      "temp_kf": 0.29,
+      "dew_point": 291.6
     },
     "wind": {
       "speed": 5.01,
@@ -115,7 +84,7 @@
       "grnd_level": 1003,
       "humidity": 97,
       "temp_kf": 0,
-      "dew_point": 291.75
+      "dew_point": 291.73
     },
     "wind": {
       "speed": 4.74,
@@ -1279,6 +1248,37 @@
     },
     "clouds": {
       "all": 79
+    }
+  },
+  {
+    "dt": 1786114800,
+    "weather": [
+      {
+        "id": 802,
+        "main": "Clouds",
+        "description": "scattered clouds",
+        "icon": "03n"
+      }
+    ],
+    "main": {
+      "temp": 287.59,
+      "feels_like": 287.05,
+      "temp_min": 287.59,
+      "temp_max": 287.59,
+      "pressure": 1013,
+      "sea_level": 1013,
+      "grnd_level": 1004,
+      "humidity": 75,
+      "temp_kf": 0,
+      "dew_point": 283.23
+    },
+    "wind": {
+      "speed": 2.33,
+      "deg": 359,
+      "gust": 2.38
+    },
+    "clouds": {
+      "all": 38
     }
   }
 ]
