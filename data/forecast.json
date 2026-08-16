@@ -1,36 +1,5 @@
 [
   {
-    "dt": 1786914000,
-    "weather": [
-      {
-        "id": 804,
-        "main": "Clouds",
-        "description": "overcast clouds",
-        "icon": "04d"
-      }
-    ],
-    "main": {
-      "temp": 293.35,
-      "feels_like": 293.96,
-      "temp_min": 293.35,
-      "temp_max": 293.35,
-      "pressure": 1009,
-      "sea_level": 1009,
-      "grnd_level": 1000,
-      "humidity": 97,
-      "temp_kf": 0,
-      "dew_point": 292.86
-    },
-    "wind": {
-      "speed": 3.74,
-      "deg": 190,
-      "gust": 11
-    },
-    "clouds": {
-      "all": 100
-    }
-  },
-  {
     "dt": 1786924800,
     "weather": [
       {
@@ -41,16 +10,16 @@
       }
     ],
     "main": {
-      "temp": 294.32,
-      "feels_like": 294.95,
-      "temp_min": 294.32,
+      "temp": 294.33,
+      "feels_like": 294.96,
+      "temp_min": 294.33,
       "temp_max": 296.27,
       "pressure": 1009,
       "sea_level": 1009,
       "grnd_level": 1000,
       "humidity": 94,
-      "temp_kf": -1.95,
-      "dew_point": 293.32
+      "temp_kf": -1.94,
+      "dew_point": 293.33
     },
     "wind": {
       "speed": 5.44,
@@ -75,12 +44,12 @@
       "temp": 296.84,
       "feels_like": 297.48,
       "temp_min": 296.84,
-      "temp_max": 298.59,
+      "temp_max": 298.58,
       "pressure": 1009,
       "sea_level": 1009,
       "grnd_level": 1000,
       "humidity": 85,
-      "temp_kf": -1.75,
+      "temp_kf": -1.74,
       "dew_point": 294.17
     },
     "wind": {
@@ -1258,6 +1227,37 @@
       "speed": 5.44,
       "deg": 197,
       "gust": 13.69
+    },
+    "clouds": {
+      "all": 31
+    }
+  },
+  {
+    "dt": 1787346000,
+    "weather": [
+      {
+        "id": 802,
+        "main": "Clouds",
+        "description": "scattered clouds",
+        "icon": "03d"
+      }
+    ],
+    "main": {
+      "temp": 291.18,
+      "feels_like": 291.36,
+      "temp_min": 291.18,
+      "temp_max": 291.18,
+      "pressure": 1010,
+      "sea_level": 1010,
+      "grnd_level": 1001,
+      "humidity": 89,
+      "temp_kf": 0,
+      "dew_point": 289.32
+    },
+    "wind": {
+      "speed": 5.47,
+      "deg": 191,
+      "gust": 13.93
     },
     "clouds": {
       "all": 31
