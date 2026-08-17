@@ -10,16 +10,16 @@
       }
     ],
     "main": {
-      "temp": 294.38,
-      "feels_like": 295.04,
-      "temp_min": 293.71,
-      "temp_max": 294.38,
+      "temp": 293.72,
+      "feels_like": 294.31,
+      "temp_min": 293.72,
+      "temp_max": 293.72,
       "pressure": 1010,
       "sea_level": 1010,
       "grnd_level": 1001,
       "humidity": 95,
-      "temp_kf": 0.67,
-      "dew_point": 293.55
+      "temp_kf": 0,
+      "dew_point": 292.89
     },
     "wind": {
       "speed": 2.4,
@@ -30,30 +30,30 @@
       "3h": 0.27
     },
     "clouds": {
-      "all": 29
+      "all": 63
     }
   },
   {
     "dt": 1786989600,
     "weather": [
       {
-        "id": 802,
+        "id": 803,
         "main": "Clouds",
-        "description": "scattered clouds",
-        "icon": "03n"
+        "description": "broken clouds",
+        "icon": "04n"
       }
     ],
     "main": {
-      "temp": 293.63,
-      "feels_like": 294.27,
+      "temp": 293.51,
+      "feels_like": 294.11,
       "temp_min": 293.08,
-      "temp_max": 293.63,
+      "temp_max": 293.51,
       "pressure": 1010,
       "sea_level": 1010,
       "grnd_level": 1000,
-      "humidity": 97,
-      "temp_kf": 0.55,
-      "dew_point": 293.14
+      "humidity": 96,
+      "temp_kf": 0.43,
+      "dew_point": 292.85
     },
     "wind": {
       "speed": 2.48,
@@ -61,7 +61,7 @@
       "gust": 8.64
     },
     "clouds": {
-      "all": 49
+      "all": 65
     }
   },
   {
@@ -75,16 +75,16 @@
       }
     ],
     "main": {
-      "temp": 293.85,
-      "feels_like": 294.51,
-      "temp_min": 293.85,
+      "temp": 293.81,
+      "feels_like": 294.46,
+      "temp_min": 293.81,
       "temp_max": 293.85,
       "pressure": 1010,
       "sea_level": 1010,
       "grnd_level": 1001,
       "humidity": 97,
-      "temp_kf": 0,
-      "dew_point": 293.21
+      "temp_kf": -0.04,
+      "dew_point": 293.32
     },
     "wind": {
       "speed": 2.44,
@@ -95,7 +95,7 @@
       "3h": 0.92
     },
     "clouds": {
-      "all": 100
+      "all": 88
     }
   },
   {
