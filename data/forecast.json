@@ -10,16 +10,16 @@
       }
     ],
     "main": {
-      "temp": 293.24,
-      "feels_like": 293.84,
-      "temp_min": 293.24,
+      "temp": 293.56,
+      "feels_like": 294.19,
+      "temp_min": 293.56,
       "temp_max": 293.56,
       "pressure": 1010,
       "sea_level": 1010,
       "grnd_level": 1001,
       "humidity": 97,
-      "temp_kf": -0.32,
-      "dew_point": 292.75
+      "temp_kf": 0,
+      "dew_point": 293.07
     },
     "wind": {
       "speed": 1.97,
@@ -30,30 +30,30 @@
       "3h": 0.16
     },
     "clouds": {
-      "all": 52
+      "all": 100
     }
   },
   {
     "dt": 1787011200,
     "weather": [
       {
-        "id": 803,
+        "id": 804,
         "main": "Clouds",
-        "description": "broken clouds",
+        "description": "overcast clouds",
         "icon": "04d"
       }
     ],
     "main": {
-      "temp": 295.9,
-      "feels_like": 296.55,
-      "temp_min": 295.9,
-      "temp_max": 297.31,
+      "temp": 294.81,
+      "feels_like": 295.46,
+      "temp_min": 294.81,
+      "temp_max": 297.3,
       "pressure": 1010,
       "sea_level": 1010,
       "grnd_level": 1000,
-      "humidity": 89,
-      "temp_kf": -1.41,
-      "dew_point": 293.99
+      "humidity": 93,
+      "temp_kf": -2.49,
+      "dew_point": 293.63
     },
     "wind": {
       "speed": 1.95,
@@ -61,7 +61,7 @@
       "gust": 2.67
     },
     "clouds": {
-      "all": 70
+      "all": 97
     }
   },
   {
@@ -75,16 +75,16 @@
       }
     ],
     "main": {
-      "temp": 299.68,
-      "feels_like": 299.68,
-      "temp_min": 299.68,
+      "temp": 297.64,
+      "feels_like": 298.36,
+      "temp_min": 297.64,
       "temp_max": 299.68,
-      "pressure": 1008,
-      "sea_level": 1008,
+      "pressure": 1009,
+      "sea_level": 1009,
       "grnd_level": 999,
-      "humidity": 79,
-      "temp_kf": 0,
-      "dew_point": 295.6
+      "humidity": 85,
+      "temp_kf": -2.04,
+      "dew_point": 294.95
     },
     "wind": {
       "speed": 2,
@@ -95,7 +95,7 @@
       "3h": 1.23
     },
     "clouds": {
-      "all": 95
+      "all": 97
     }
   },
   {
