@@ -1,39 +1,5 @@
 [
   {
-    "dt": 1787497200,
-    "weather": [
-      {
-        "id": 501,
-        "main": "Rain",
-        "description": "moderate rain",
-        "icon": "10n"
-      }
-    ],
-    "main": {
-      "temp": 293.51,
-      "feels_like": 294.19,
-      "temp_min": 293.51,
-      "temp_max": 293.51,
-      "pressure": 1006,
-      "sea_level": 1006,
-      "grnd_level": 996,
-      "humidity": 99,
-      "temp_kf": 0,
-      "dew_point": 293.35
-    },
-    "wind": {
-      "speed": 2.12,
-      "deg": 260,
-      "gust": 4.95
-    },
-    "rain": {
-      "3h": 8.3
-    },
-    "clouds": {
-      "all": 100
-    }
-  },
-  {
     "dt": 1787508000,
     "weather": [
       {
@@ -46,13 +12,13 @@
     "main": {
       "temp": 293.29,
       "feels_like": 293.92,
-      "temp_min": 292.85,
+      "temp_min": 292.86,
       "temp_max": 293.29,
       "pressure": 1006,
       "sea_level": 1006,
       "grnd_level": 997,
       "humidity": 98,
-      "temp_kf": 0.44,
+      "temp_kf": 0.43,
       "dew_point": 292.96
     },
     "wind": {
@@ -80,13 +46,13 @@
     "main": {
       "temp": 291.44,
       "feels_like": 291.88,
-      "temp_min": 290.4,
+      "temp_min": 290.41,
       "temp_max": 291.44,
       "pressure": 1008,
       "sea_level": 1008,
       "grnd_level": 1000,
       "humidity": 98,
-      "temp_kf": 1.04,
+      "temp_kf": 1.03,
       "dew_point": 291.12
     },
     "wind": {
@@ -1291,6 +1257,37 @@
     },
     "clouds": {
       "all": 100
+    }
+  },
+  {
+    "dt": 1787929200,
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "overcast clouds",
+        "icon": "04n"
+      }
+    ],
+    "main": {
+      "temp": 287.27,
+      "feels_like": 287.09,
+      "temp_min": 287.27,
+      "temp_max": 287.27,
+      "pressure": 1014,
+      "sea_level": 1014,
+      "grnd_level": 1005,
+      "humidity": 90,
+      "temp_kf": 0,
+      "dew_point": 285.64
+    },
+    "wind": {
+      "speed": 1.11,
+      "deg": 76,
+      "gust": 1.18
+    },
+    "clouds": {
+      "all": 92
     }
   }
 ]
