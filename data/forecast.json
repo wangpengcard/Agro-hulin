@@ -1,36 +1,5 @@
 [
   {
-    "dt": 1787648400,
-    "weather": [
-      {
-        "id": 800,
-        "main": "Clear",
-        "description": "clear sky",
-        "icon": "01d"
-      }
-    ],
-    "main": {
-      "temp": 296.55,
-      "feels_like": 297.03,
-      "temp_min": 296.55,
-      "temp_max": 296.55,
-      "pressure": 1006,
-      "sea_level": 1006,
-      "grnd_level": 997,
-      "humidity": 80,
-      "temp_kf": 0,
-      "dew_point": 292.9
-    },
-    "wind": {
-      "speed": 1.4,
-      "deg": 281,
-      "gust": 1.47
-    },
-    "clouds": {
-      "all": 0
-    }
-  },
-  {
     "dt": 1787659200,
     "weather": [
       {
@@ -43,13 +12,13 @@
     "main": {
       "temp": 295.18,
       "feels_like": 295.58,
-      "temp_min": 292.45,
+      "temp_min": 292.46,
       "temp_max": 295.18,
       "pressure": 1006,
       "sea_level": 1006,
       "grnd_level": 998,
       "humidity": 82,
-      "temp_kf": 2.73,
+      "temp_kf": 2.72,
       "dew_point": 291.97
     },
     "wind": {
@@ -74,13 +43,13 @@
     "main": {
       "temp": 293.18,
       "feels_like": 293.46,
-      "temp_min": 291.49,
+      "temp_min": 291.5,
       "temp_max": 293.18,
       "pressure": 1007,
       "sea_level": 1007,
       "grnd_level": 998,
       "humidity": 85,
-      "temp_kf": 1.69,
+      "temp_kf": 1.68,
       "dew_point": 290.58
     },
     "wind": {
@@ -1285,6 +1254,37 @@
     },
     "rain": {
       "3h": 1.62
+    },
+    "clouds": {
+      "all": 100
+    }
+  },
+  {
+    "dt": 1788080400,
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "overcast clouds",
+        "icon": "04d"
+      }
+    ],
+    "main": {
+      "temp": 290.06,
+      "feels_like": 290.21,
+      "temp_min": 290.06,
+      "temp_max": 290.06,
+      "pressure": 1010,
+      "sea_level": 1010,
+      "grnd_level": 1001,
+      "humidity": 92,
+      "temp_kf": 0,
+      "dew_point": 288.66
+    },
+    "wind": {
+      "speed": 3.91,
+      "deg": 109,
+      "gust": 7.62
     },
     "clouds": {
       "all": 100
