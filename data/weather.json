@@ -1,32 +1,29 @@
 {
-  "dt": 1788794750,
+  "dt": 1788809492,
   "weather": [
     {
-      "id": 500,
-      "main": "Rain",
-      "description": "light rain",
-      "icon": "10n"
+      "id": 803,
+      "main": "Clouds",
+      "description": "broken clouds",
+      "icon": "04n"
     }
   ],
   "main": {
-    "temp": 284.42,
-    "feels_like": 284.03,
-    "temp_min": 284.42,
-    "temp_max": 284.42,
+    "temp": 282.84,
+    "feels_like": 281.29,
+    "temp_min": 282.84,
+    "temp_max": 282.84,
     "pressure": 1012,
-    "humidity": 93,
+    "humidity": 91,
     "sea_level": 1012,
     "grnd_level": 1002
   },
   "wind": {
-    "speed": 5.37,
-    "deg": 317,
-    "gust": 11.38
-  },
-  "rain": {
-    "1h": 0.27
+    "speed": 3,
+    "deg": 295,
+    "gust": 6.9
   },
   "clouds": {
-    "all": 100
+    "all": 55
   }
 }
