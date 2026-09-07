@@ -1,36 +1,5 @@
 [
   {
-    "dt": 1788814800,
-    "weather": [
-      {
-        "id": 802,
-        "main": "Clouds",
-        "description": "scattered clouds",
-        "icon": "03d"
-      }
-    ],
-    "main": {
-      "temp": 282.29,
-      "feels_like": 280.55,
-      "temp_min": 282.29,
-      "temp_max": 282.29,
-      "pressure": 1012,
-      "sea_level": 1012,
-      "grnd_level": 1003,
-      "humidity": 91,
-      "temp_kf": 0,
-      "dew_point": 280.9
-    },
-    "wind": {
-      "speed": 3.13,
-      "deg": 288,
-      "gust": 8.4
-    },
-    "clouds": {
-      "all": 45
-    }
-  },
-  {
     "dt": 1788825600,
     "weather": [
       {
@@ -41,16 +10,16 @@
       }
     ],
     "main": {
-      "temp": 283.58,
-      "feels_like": 282.87,
-      "temp_min": 283.58,
-      "temp_max": 286.17,
+      "temp": 283.59,
+      "feels_like": 282.88,
+      "temp_min": 283.59,
+      "temp_max": 286.16,
       "pressure": 1012,
       "sea_level": 1012,
       "grnd_level": 1004,
       "humidity": 84,
-      "temp_kf": -2.59,
-      "dew_point": 281
+      "temp_kf": -2.57,
+      "dew_point": 281.01
     },
     "wind": {
       "speed": 6.62,
@@ -75,12 +44,12 @@
       "temp": 286.81,
       "feels_like": 285.98,
       "temp_min": 286.81,
-      "temp_max": 289.07,
+      "temp_max": 289.06,
       "pressure": 1013,
       "sea_level": 1013,
       "grnd_level": 1003,
       "humidity": 67,
-      "temp_kf": -2.26,
+      "temp_kf": -2.25,
       "dew_point": 280.8
     },
     "wind": {
@@ -1243,6 +1212,40 @@
     },
     "clouds": {
       "all": 37
+    }
+  },
+  {
+    "dt": 1789246800,
+    "weather": [
+      {
+        "id": 500,
+        "main": "Rain",
+        "description": "light rain",
+        "icon": "10d"
+      }
+    ],
+    "main": {
+      "temp": 290.42,
+      "feels_like": 290.58,
+      "temp_min": 290.42,
+      "temp_max": 290.42,
+      "pressure": 1016,
+      "sea_level": 1016,
+      "grnd_level": 1007,
+      "humidity": 91,
+      "temp_kf": 0,
+      "dew_point": 288.93
+    },
+    "wind": {
+      "speed": 6.82,
+      "deg": 210,
+      "gust": 15.31
+    },
+    "rain": {
+      "3h": 0.18
+    },
+    "clouds": {
+      "all": 9
     }
   }
 ]
