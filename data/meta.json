@@ -1,10 +1,15 @@
 {
-  "updated": "2026-09-21T21:32:26.262Z",
+  "updated": "2026-09-22T00:28:40.036Z",
   "polygon_id": "69fc3a3eca96274e6a3c272b",
   "center": {
     "lat": 45.7291,
     "lon": 132.9466
   },
-  "ok": 6,
-  "errors": []
+  "ok": 5,
+  "errors": [
+    {
+      "endpoint": "uvi",
+      "error": "HTTP 500: {\"message\":\"Internal Server Error\"}"
+    }
+  ]
 }
