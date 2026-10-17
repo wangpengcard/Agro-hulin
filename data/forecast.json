@@ -1,36 +1,5 @@
 [
   {
-    "dt": 1792270800,
-    "weather": [
-      {
-        "id": 804,
-        "main": "Clouds",
-        "description": "overcast clouds",
-        "icon": "04n"
-      }
-    ],
-    "main": {
-      "temp": 278.15,
-      "feels_like": 275.67,
-      "temp_min": 278.15,
-      "temp_max": 278.15,
-      "pressure": 1023,
-      "sea_level": 1023,
-      "grnd_level": 1013,
-      "humidity": 59,
-      "temp_kf": 0,
-      "dew_point": 271.08
-    },
-    "wind": {
-      "speed": 2.98,
-      "deg": 104,
-      "gust": 5.79
-    },
-    "clouds": {
-      "all": 100
-    }
-  },
-  {
     "dt": 1792281600,
     "weather": [
       {
@@ -1252,6 +1221,37 @@
       "speed": 3.63,
       "deg": 243,
       "gust": 8.63
+    },
+    "clouds": {
+      "all": 0
+    }
+  },
+  {
+    "dt": 1792702800,
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "clear sky",
+        "icon": "01n"
+      }
+    ],
+    "main": {
+      "temp": 274.49,
+      "feels_like": 270.66,
+      "temp_min": 274.49,
+      "temp_max": 274.49,
+      "pressure": 1026,
+      "sea_level": 1026,
+      "grnd_level": 1016,
+      "humidity": 68,
+      "temp_kf": 0,
+      "dew_point": 269.23
+    },
+    "wind": {
+      "speed": 3.79,
+      "deg": 237,
+      "gust": 9.28
     },
     "clouds": {
       "all": 0
